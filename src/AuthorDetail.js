@@ -1,13 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 
-class AuthorDetail extends Component {
-    render() {
-      return (
+function AuthorDetail(props){
+    const author = props.author
+    const bookDetail = props.author.books.map(book => (
+        <tr>
+        <td>{book.title}</td>
+        <td>{`${props.author.first_name} ${props.author.last_name}`}</td>
+        <td>
+          <button className="btn" style={{ backgroundColor: book.color }} />
+        </td>
+      </tr>
+    ));
+
+  return (
 
 <div className="author col-xs-10">
     <div>
-        <h3>Author name</h3>
-        <img src="http://catchingfire.ca/wp-content/uploads/2016/09/question-mark-square-01.png" className="img-thumbnail" alt="I SHOULD BE AN AUTHOR NAME TOO"/>
+        <h3>{author.first_name}{author.last_name}</h3>
+        <img src={author.imageUrl} className="img-thumbnail" alt="I SHOULD BE AN AUTHOR NAME TOO"/>
     </div>
     <table className='mt-3 table'>
         <thead>
@@ -18,24 +28,9 @@ class AuthorDetail extends Component {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>I SHOULD BE A BOOK NAME</td>
-                <td>I SHOULD BE  THE AUTHOR OF THIS BOOK</td>
-                <td>
-                    <button className="btn" style={{backgroundColor: "blue"}}/>
-                </td>
-            </tr>
-            <tr>
-                <td>I SHOULD BE ANOTHER BOOK NAME</td>
-                <td>I SHOULD BE A STRING OF THIS OTHER BOOK'S AUTHORS</td>
-                <td>
-                    <button className="btn" style={{backgroundColor: "red"}}/>
-                </td>
-            </tr>
+           {bookDetail} 
         </tbody>
     </table>
 </div>);
 };
-};
-
 export default AuthorDetail;
