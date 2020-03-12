@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // Components
 import AuthorCard from "./AuthorCard";
+import SearchBar from "./SearchBar";
 
 
 class AuthorList extends Component {
@@ -20,6 +21,7 @@ class AuthorList extends Component {
     ));
     return (
       <div className="authors">
+        <SearchBar/>
         <h3>Authors</h3>
         <div className="row">{authorCards}</div>
       </div>
