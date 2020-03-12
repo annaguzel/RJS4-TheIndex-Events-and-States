@@ -10,7 +10,14 @@ class AuthorList extends Component {
     authors: this.props.authors
   };
 
-
+  filterAuthors = query => {
+    this.setState({
+       authors:this.props.authors.filter(author =>{
+         const authorName = author.first_name +" " + author.last_name;
+         return authorName.toLowerCase().includes(query.toLowerCase())         
+        }) 
+      });
+    }
   render() {
     const authorCards = this.state.authors.map(author => (
       <AuthorCard
@@ -21,7 +28,7 @@ class AuthorList extends Component {
     ));
     return (
       <div className="authors">
-        <SearchBar/>
+        <SearchBar filter={this.filterAuthors}/>
         <h3>Authors</h3>
         <div className="row">{authorCards}</div>
       </div>
